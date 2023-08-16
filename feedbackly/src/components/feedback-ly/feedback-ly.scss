@@ -1,0 +1,39 @@
+$padding-size: 12px;
+
+$positions: (
+   "bottom-right": (bottom, right),
+   "bottom-left": (bottom, left),
+   "top-left": (top, left),
+   "top-right": (top, right)
+);
+
+.feedbackly-icon {
+   position: fixed;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: $padding-size;
+   border-radius: 100%;
+   z-index: 1001;
+   background: $fly-color-white;
+   border: 3px solid $fly-color-primary;
+   cursor: pointer;
+
+   &:hover:not(.disabled) {
+      background: $fly-color-primary-light;
+      border-color: $fly-color-primary-100;
+   }
+
+   &.disabled {
+      cursor: not-allowed;
+      border-color: $fly-color-disabled-200;
+      opacity: 0.8;
+   }
+
+   @each $position, $values in $positions {
+      &.#{$position} {
+         #{nth($values, 1)}: $padding-size;
+         #{nth($values, 2)}: $padding-size;
+      }
+   }
+}
